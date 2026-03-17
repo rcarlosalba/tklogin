@@ -51,11 +51,13 @@ function obtenerConexion(): PDO
 {
     cargarEnv();
 
-    $host = $_ENV['DB_HOST'] ?? null;
-    $port = $_ENV['DB_PORT'] ?? '3306';
-    $nombre = $_ENV['DB_NAME'] ?? null;
-    $usuario = $_ENV['DB_USER'] ?? null;
-    $contrasena = $_ENV['DB_PASS'] ?? null;
+    //DEBUG
+    $host     = $_ENV['DB_HOST'] ?? getenv('DB_HOST') ?? null;
+    $port     = $_ENV['DB_PORT'] ?? getenv('DB_PORT') ?? '3306';
+    $nombre   = $_ENV['DB_NAME'] ?? getenv('DB_NAME') ?? null;
+    $usuario  = $_ENV['DB_USER'] ?? getenv('DB_USER') ?? null;
+    $contrasena = $_ENV['DB_PASS'] ?? getenv('DB_PASS') ?? null;
+    //
 
     if ($host === null || $nombre === null || $usuario === null || $contrasena === null) {
         throw new \RuntimeException('Faltan variables de entorno para la conexión a la base de datos.');
